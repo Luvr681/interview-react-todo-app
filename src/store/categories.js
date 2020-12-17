@@ -14,7 +14,7 @@ class Categories {
   }
 
   setActive(id) {
-    this.categories = this.categories.map(category => category.id === id ? category.active = { ...category, active: true} : category.active = { ...category, active: false})
+    this.categories = this.categories.map(category => category.id === id ? { ...category, active: true} : { ...category, active: false})
   }
 }
 
