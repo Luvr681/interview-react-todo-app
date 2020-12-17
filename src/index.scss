@@ -94,9 +94,10 @@ body.darken {
 .todo__title.completed {
   text-decoration: line-through;
 
-  p {
-  	text-decoration: line-through;
-  }
+}
+
+.todo__title.completed p {
+  text-decoration: line-through;
 }
 
 .todo__input {
@@ -118,10 +119,10 @@ b {
 .todo__title {
 	display: block;
 
-	p {
-		display: inline-block;
-		margin-bottom: 0;
-	}
+}
+.todo__title p {
+  display: inline-block;
+  margin-bottom: 0;
 }
 
 .todo__remove__button {
@@ -180,16 +181,11 @@ b {
 	.todo__change {
 		flex-direction: column;
 
-		&__btn {
-			width: 250px;
-			border-radius: 0;
-		}
 	}
-
-	// .todo__change__btn {
-	// 	width: 250px;
-	// 	border-radius: 0;
-	// }
+	.todo__change__btn {
+    width: 250px;
+    border-radius: 0;
+  }
 
 	.todo__change__btn:first-child {
 		width: 252px;

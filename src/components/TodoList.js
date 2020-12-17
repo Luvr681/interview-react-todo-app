@@ -6,29 +6,21 @@ import { TodoItem } from './TodoItem'
 
 export const TodoList = observer( ({ type }) => {
   const sortTodo = () => type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type)
-
   const [todos, setTodos] = React.useState(sortTodo())
+  const updateTodo = () => setTodos(todos => type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type))
 
   React.useEffect(() => {
-    if (type === 'complition') { 
-      setTodos(todos => todo.todos.filter(todo => todo.completed))
-    } else {
-      setTodos(todos => sortTodo())
-    }
+    type === 'complition' ? setTodos(todos => todo.todos.filter(todo => todo.completed)) : setTodos(todos => sortTodo())
   }, [todo.todos.length, type])
   
   const onToggle = id => {
     todo.toggleTodo(id)
-    setTodos(todos => {
-      return type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type)
-    })
+    updateTodo()
   }
 
   const onRemove = id => {
     todo.removeTodo(id)
-    setTodos(todos => {
-      return type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type)
-    })
+    updateTodo()
   }
 
   return (
