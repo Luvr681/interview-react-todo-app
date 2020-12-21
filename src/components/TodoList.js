@@ -5,22 +5,21 @@ import todo from '../store/todo'
 import { TodoItem } from './TodoItem'
 
 export const TodoList = observer( ({ type }) => {
-  const sortTodo = () => type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type)
-  const [todos, setTodos] = React.useState(sortTodo())
-  const updateTodo = () => setTodos(todos => type === 'all' ? todo.todos : todo.todos.filter(todo => todo.type === type))
+  const getTodo = () => todo.getTodoByType(type)
+  const [todos, setTodos] = React.useState(getTodo())
 
   React.useEffect(() => {
-    type === 'complition' ? setTodos(todos => todo.todos.filter(todo => todo.completed)) : setTodos(todos => sortTodo())
+    setTodos(getTodo())
   }, [todo.todos.length, type])
   
   const onToggle = id => {
     todo.toggleTodo(id)
-    updateTodo()
+    setTodos(getTodo())
   }
 
   const onRemove = id => {
     todo.removeTodo(id)
-    updateTodo()
+    setTodos(getTodo())
   }
 
   return (

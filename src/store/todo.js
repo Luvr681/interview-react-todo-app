@@ -17,10 +17,20 @@ class Todo {
 
   removeTodo(id) {
     this.todos = this.todos.filter(todo => todo.id !== id)
+    return this.getTodoByType()
+  }
+
+  getTodoByType(type = 'personal') {
+    return type === 'complition' 
+      ? this.todos.filter(todo => todo.completed) 
+      : type === 'all' 
+      ? this.todos 
+      : this.todos.filter(todo => todo.type === type)
   }
 
   toggleTodo(id, date) {
     this.todos = this.todos.map(todo => todo.id === id ? { ...todo, key: date, completed: !todo.completed } : todo) 
+    return this.getTodoByType()
   }
 }
 
